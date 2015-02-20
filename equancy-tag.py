@@ -17,12 +17,13 @@ def tag():
         return 'KO'
 
 
+@app.route('/equancy/read/<page>', methods=['GET'])
 @app.route('/equancy/read', methods=['GET'])
-def tag_read():
+def tag_read(page=30):
     try:
         with io.open('media/equancy_tag.log', 'r') as f:
             lines = f.readlines()
-        return "<br/>".join(lines[-30::])
+        return "<br/>".join(lines[-int(page)::])
     except Exception, e:
         raise
         return 'KO'
